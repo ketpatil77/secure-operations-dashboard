@@ -1,0 +1,118 @@
+/* Global design tokens for the Secure Operations Dashboard */
+:root {
+  --background: #030712;
+  --surface: #0a0f1f;
+  --surface-alt: #0f172a;
+  --panel: #0b1224;
+  --muted: #94a3b8;
+  --foreground: #e2e8f0;
+  --accent: #3dd1f6;
+  --accent-strong: #67e8f9;
+  --success: #4ade80;
+  --warning: #facc15;
+  --danger: #f87171;
+  --border: rgba(226, 232, 240, 0.08);
+  --border-strong: rgba(103, 232, 249, 0.35);
+  --shadow-1: 0 20px 60px rgba(0, 0, 0, 0.45);
+  --glow: 0 0 0 1px rgba(61, 209, 246, 0.12), 0 0 24px rgba(61, 209, 246, 0.25);
+  --grid-color: rgba(103, 232, 249, 0.08);
+  --grid-size: 32px;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-panel: var(--panel);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-border: var(--border);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains);
+  --shadow-soft: var(--shadow-1);
+}
+
+body {
+  background: radial-gradient(circle at 20% 20%, rgba(61, 209, 246, 0.12), transparent 25%),
+    radial-gradient(circle at 80% 0%, rgba(124, 58, 237, 0.12), transparent 30%),
+    radial-gradient(circle at 50% 100%, rgba(16, 185, 129, 0.16), transparent 30%),
+    var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: linear-gradient(
+      0deg,
+      transparent 24%,
+      var(--grid-color) 25%,
+      var(--grid-color) 26%,
+      transparent 27%,
+      transparent 74%,
+      var(--grid-color) 75%,
+      var(--grid-color) 76%,
+      transparent 77%,
+      transparent
+    ),
+    linear-gradient(
+      90deg,
+      transparent 24%,
+      var(--grid-color) 25%,
+      var(--grid-color) 26%,
+      transparent 27%,
+      transparent 74%,
+      var(--grid-color) 75%,
+      var(--grid-color) 76%,
+      transparent 77%,
+      transparent
+    );
+  background-size: var(--grid-size) var(--grid-size);
+  opacity: 0.25;
+  pointer-events: none;
+  mask-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.7), transparent 70%);
+  z-index: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: rgba(103, 232, 249, 0.2);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.45);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(103, 232, 249, 0.7);
+}
