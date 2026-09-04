@@ -6,7 +6,7 @@ type TooltipProps = {
   content: React.ReactNode;
   side?: "top" | "bottom" | "left" | "right";
   className?: string;
-  children: React.ReactElement;
+  children: React.ReactElement<React.HTMLAttributes<HTMLElement>>;
 };
 
 const offsets: Record<NonNullable<TooltipProps["side"]>, string> = {
@@ -25,23 +25,23 @@ export function Tooltip({ content, side = "top", className, children }: TooltipP
   }
 
   const trigger = cloneElement(children, {
-    onMouseEnter: (event: React.MouseEvent) => {
+    onMouseEnter: (event: React.MouseEvent<HTMLElement>) => {
       children.props.onMouseEnter?.(event);
       setOpen(true);
     },
-    onMouseLeave: (event: React.MouseEvent) => {
+    onMouseLeave: (event: React.MouseEvent<HTMLElement>) => {
       children.props.onMouseLeave?.(event);
       setOpen(false);
     },
-    onFocus: (event: React.FocusEvent) => {
+    onFocus: (event: React.FocusEvent<HTMLElement>) => {
       children.props.onFocus?.(event);
       setOpen(true);
     },
-    onBlur: (event: React.FocusEvent) => {
+    onBlur: (event: React.FocusEvent<HTMLElement>) => {
       children.props.onBlur?.(event);
       setOpen(false);
     },
-    "aria-describedby": open ? id : undefined,
+    ...(open ? { "aria-describedby": id } : {}),
   });
 
   return (
