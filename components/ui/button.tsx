@@ -4,7 +4,8 @@ import { cn } from "@/lib/utils";
 
 type ButtonVariant = "primary" | "secondary" | "ghost";
 
-type ButtonProps = ComponentPropsWithoutRef<typeof motion.button> & {
+type ButtonProps = Omit<ComponentPropsWithoutRef<typeof motion.button>, "children"> & {
+  children?: ReactNode;
   variant?: ButtonVariant;
   loading?: boolean;
   leadingIcon?: ReactNode;
