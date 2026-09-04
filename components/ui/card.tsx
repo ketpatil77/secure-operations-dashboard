@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
-import { forwardRef } from "react";
+import { forwardRef, type ComponentPropsWithoutRef, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { pop, softGlow } from "@/lib/motion";
 
-type CardProps = React.HTMLAttributes<HTMLDivElement> & {
+type CardProps = Omit<ComponentPropsWithoutRef<typeof motion.div>, "children"> & {
+  children?: ReactNode;
   interactive?: boolean;
   padding?: "sm" | "md" | "lg";
 };
@@ -21,8 +22,9 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
       variants={pop}
       initial="hidden"
       animate="visible"
-      whileHover={interactive ? "hover" : undefined}
-      whileTap={interactive ? { scale: 0.995 } : undefined}
+      {...(interactive
+        ? { whileHover: "hover", whileTap: { scale: 0.995 } }
+        : {})}
       className={cn(
         "glass-surface relative overflow-hidden rounded-2xl border border-white/10 shadow-lg backdrop-blur-xl",
         paddingMap[padding],
