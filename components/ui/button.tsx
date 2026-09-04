@@ -1,14 +1,14 @@
 import { motion } from "framer-motion";
-import { forwardRef } from "react";
+import { forwardRef, type ComponentPropsWithoutRef, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 type ButtonVariant = "primary" | "secondary" | "ghost";
 
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+type ButtonProps = ComponentPropsWithoutRef<typeof motion.button> & {
   variant?: ButtonVariant;
   loading?: boolean;
-  leadingIcon?: React.ReactNode;
-  trailingIcon?: React.ReactNode;
+  leadingIcon?: ReactNode;
+  trailingIcon?: ReactNode;
 };
 
 const styles: Record<ButtonVariant, string> = {
