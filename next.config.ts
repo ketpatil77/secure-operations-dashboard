@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  output: "export",
+  basePath: "/secure-operations-dashboard",
+  assetPrefix: "/secure-operations-dashboard/",
+  images: { unoptimized: true },
   reactCompiler: true,
 };
 
