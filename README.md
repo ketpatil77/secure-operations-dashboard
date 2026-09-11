@@ -16,6 +16,11 @@ This project provides a modern dashboard foundation for presenting operational a
 - **Lucide React** for icons
 - **ESLint** for code quality checks
 
+## Requirements
+
+- Node.js **20.9+**
+- npm
+
 ## Getting Started
 
 Install dependencies:
